@@ -44,7 +44,9 @@
     <div id="chests" class="col-sm-2" style="background-color:lavender;"> Number of chests checked is zero</div>
     <div id="score" class="col-md-3" style="background-color:green;">Score is unknown</div>
     <div id="help" class="col-sm-2" style="background-color:yellowgreen;">Help report</div>
-   
+    <div class="container text-center">
+      <button class="btn btn-success" type="submit" onclick="resetGame()">Reset</button>
+  </div>
   </div>
 </div>
 <div class="container">
@@ -94,7 +96,7 @@
         var chestCount = 0;
         var score = 0;
         var lastCheck = 12;
-        var treasureLocation = 18;
+        var treasureLocation = Math.floor(Math.random() * 24)
 function check(position){
           var location = ids[position]
           var imageUp = document.getElementById(location);
@@ -139,6 +141,23 @@ function check(position){
           var scoreA = document.getElementById("score");
           scoreA.innerHTML = ("Score is " + score);
         }
+        // BONUS
+      function resetGame() {
+      treasureLocation = Math.floor(Math.random() * 24)
+      while(treasureLocation == 12) {
+          treasureLocation = Math.floor(Math.random() * 24)
+      }
+      chestCount = 0
+      score = 0
+      document.getElementById("chests").innerHTML = "Number of chests checked is zero"
+      document.getElementById("score").innerHTML = "Score is unknown"
+      document.getElementById("help").innerHTML = "Help report"
+      for(let i = 0; i < 24; i++) {
+          if(i != 12) {
+              document.getElementById(ids[i]).src = "Treasure Chest.jpg"
+          }
+      }
+  }
 </script>
 
 
